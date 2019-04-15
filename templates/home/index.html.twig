@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'app_title'|trans }}{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        #content {
+            max-width: 320px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li + li {
+            margin-top: 10px;
+        }
+        label {
+            vertical-align: middle;
+        }
+        input {
+            margin-left: 5px;
+            padding: 6px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div id="content">
+        {% if rates %}
+            <h4>{{ 'date'|trans({'%date%': rates[0].date.format('d.m.Y')}) }}</h4>
+            <ul>
+                {% for rate in rates %}
+                    <li>
+                        <label for="{{ rate.currencyCode }}">{{ rate.currencyCode }}</label>
+                        <input type="number"
+                               id="{{ rate.currencyCode }}"
+                               min="1"
+                               class="AmountInput"
+                               data-currency-code="{{ rate.currencyCode }}"
+                               data-rate="{{ rate.rate }}">
+                    </li>
+                {% endfor %}
+            </ul>
+            <script>
+                let inputs = document.querySelectorAll('.AmountInput');
+                inputs.forEach((input) => {
+                    input.addEventListener('keyup', () => {
+                        updateInputs(input);
+                    })
+                });
+                function updateInputs(initiator) {
+                    let initiatorRate = initiator.dataset.rate;
+                    inputs.forEach((input) => {
+                        if (input === initiator) {
+                            return;
+                        }
+                        input.value = Math.round(initiator.value / initiatorRate * input.dataset.rate * 100) / 100;
+                    });
+                }
+                inputs[0].value = 100;
+                updateInputs(inputs[0]);
+            </script>
+        {% else %}
+            <p>{{ 'there_is_no_rates'|trans }}</p>
+        {% endif %}
+    </div>
+{% endblock %}
