@@ -1,6 +1,6 @@
-##Тестовое задание для VR Dev Team
+## Тестовое задание для VR Dev Team
 
-####Использование
+#### Использование
 
 Используемые валюты указываются в .env: параметр `APP_SUPPORTED_CURRENCIES`.
 
@@ -9,7 +9,7 @@
 Запуск встроенного сервера: `php bin/console server:start`.
 
 
-####Описание классов
+#### Описание классов
 
 `App\Interfaces\ExchangeRatesProviderInterface` - интерфейс источника данных о курсах.
 - `getLastRates(): ExchangeRatesResponse` - возвращает последние доступные курсы валют;
