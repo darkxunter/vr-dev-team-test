@@ -2,18 +2,18 @@
 
 namespace App\Controller;
 
-use App\Service\LastExchangeRatesService;
+use App\Service\ExchangeRatesService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-    /** @var LastExchangeRatesService $lastExchangeRatesService */
-    private $lastExchangeRatesService;
+    /** @var ExchangeRatesService $lastExchangeRatesService */
+    private $exchangeRatesService;
 
-    public function __construct(LastExchangeRatesService $lastExchangeRatesService)
+    public function __construct(ExchangeRatesService $lastExchangeRatesService)
     {
-        $this->lastExchangeRatesService = $lastExchangeRatesService;
+        $this->exchangeRatesService = $lastExchangeRatesService;
     }
 
     /**
@@ -21,7 +21,7 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-        $rates = $this->lastExchangeRatesService->getLastRates();
+        $rates = $this->exchangeRatesService->getLastRates();
         return $this->render('home/index.html.twig', [
             'rates' => $rates,
         ]);
