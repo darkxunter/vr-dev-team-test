@@ -15,7 +15,7 @@
 - `getLastRates(): ExchangeRatesResponse` - возвращает последние доступные курсы валют;
 - `getRatesForDate(\DateTime $date): ExchangeRatesResponse` - возвращает курс валют на указанную дату;
 
-`ExchangeRatesResponse` - нормализованный ответ от API.
+`App\Entity\ExchangeRatesResponse` - нормализованный ответ от API.
 - `getDate(): \DateTime` - возвращает дату для которой получены курсы;
 - `getPairs(): array` - возвращает массив курсов вида `(string)CURRENCY_CODE => (float)RATE`;
 
