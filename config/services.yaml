@@ -30,3 +30,4 @@ services:
     App\Service\ExchangeRatesService:
         arguments:
             $supportedCurrencies: '%supported_currencies%'
+
