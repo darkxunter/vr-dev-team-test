@@ -5,10 +5,10 @@ namespace App\Entity;
 class ExchangeRatesResponse
 {
     /** @var \DateTime */
-    private $date;
+    private \DateTime $date;
 
     /** @var array $pairs Code => rate */
-    private $pairs;
+    private array $pairs;
 
     public function __construct(\DateTime $date, array $pairs)
     {
